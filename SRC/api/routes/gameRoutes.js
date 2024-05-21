@@ -1,3 +1,5 @@
+const { isAuth } = require("../../middlewares/auth");
+const { checkRole } = require("../../middlewares/checkRole");
 const { getGames, getGameById, createGame, updateGame, deleteGame } = require("../controllers/gameControllers");
 
 const gameRoutes = require("express").Router();
