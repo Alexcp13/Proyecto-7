@@ -1,15 +1,16 @@
 const { isAuth } = require("../../middlewares/auth");
+const { checkRole } = require("../../middlewares/checkRole");
 const { registerUser, login, deleteUser, getUsers, getUserById, updateUser } = require("../controllers/userControllers");
 
 const usersRoutes = require("express").Router();
 
 
-usersRoutes.get("/", getUsers)
-usersRoutes.get("/:id", getUserById);
+usersRoutes.get("/", [isAuth, checkRole], getUsers)
+usersRoutes.get("/:id", [isAuth, checkRole], getUserById);
 usersRoutes.post("/register", registerUser)
 usersRoutes.post("/login", login)
-usersRoutes.put("/:id", updateUser);
-usersRoutes.delete("/id", [isAuth], deleteUser)
+usersRoutes.put("/:id", [isAuth, checkRole], updateUser);
+usersRoutes.delete("/id", [isAuth, checkRole], deleteUser)
 
 
 

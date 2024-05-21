@@ -4,10 +4,10 @@ const { getConsoles, getConsoleById, createConsole, updateConsole, deleteConsole
 
 const consoleRoutes = require("express").Router();
 
-consoleRoutes.get("/", checkRole, getConsoles);
+consoleRoutes.get("/", getConsoles);
 consoleRoutes.get("/:id", getConsoleById);
-consoleRoutes.post("/", createConsole)
-consoleRoutes.put("/:id", updateConsole);
-consoleRoutes.delete("/:id", deleteConsole);
+consoleRoutes.post("/", [isAuth, checkRole], createConsole)
+consoleRoutes.put("/:id", [isAuth, checkRole], updateConsole);
+consoleRoutes.delete("/:id", [isAuth, checkRole], deleteConsole);
 
 module.exports = consoleRoutes;

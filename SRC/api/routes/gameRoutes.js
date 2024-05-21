@@ -4,8 +4,8 @@ const gameRoutes = require("express").Router();
 
 gameRoutes.get("/", getGames);
 gameRoutes.get("/:id", getGameById);
-gameRoutes.post("/", createGame)
-gameRoutes.put("/:id", updateGame);
-gameRoutes.delete("/:id", deleteGame);
+gameRoutes.post("/", [isAuth, checkRole], createGame)
+gameRoutes.put("/:id", [isAuth, checkRole], updateGame);
+gameRoutes.delete("/:id", [isAuth, checkRole], deleteGame);
 
 module.exports = gameRoutes;

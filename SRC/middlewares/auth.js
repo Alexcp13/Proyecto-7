@@ -9,7 +9,7 @@ const isAuth = async (req, res, next) => {
         if (!token) {
             return res.status(400).json("No estás autorizado")
         }
-        //Importasnte este espacio ----->
+        //Importante este espacio ----->
         const parsedToken = token.replace("Bearer ", "")
         const { id } = verifyJwt(parsedToken);
 
